@@ -1,0 +1,40 @@
+Start	End	Label	Opt
+25 July 1139 	6 December 1185 	Afonso I 	1Dist
+6 December 1185 	27 March 1211 	Sancho I 	1Dist
+27 March 1211 	25 March 1223 	Afonso II 	1Dist
+25 March 1223 	3 January 1248 	Sancho II 	1Dist
+3 January 1248 	16 February 1279 	Afonso III 	1Dist
+16 February 1279 	7 January 1325 	Dinis 	1Dist
+7 January 1325 	28 May 1357 	Afonso IV 	1Dist
+28 May 1357 	18 January 1367 	Pedro I 	1Dist
+18 January 1367 	22 October 1383 	Fernando I 	1Dist
+6 April 1385 	14 August 1433 	João I 	2Dist
+14 August 1433 	9 September 1438 	Duarte 	2Dist
+9 September 1438 	11 November 1477 	Afonso V 	2Dist
+11 November 1477 	15 November 1477 	João II 	2Dist
+15 November 1477 	28 August 1481 	Afonso V 	2Dist
+28 August 1481 	25 October 1495 	João II 	2Dist
+25 October 1495 	13 December 1521 	Manuel I 	2Dist
+13 December 1521 	11 June 1557 	João III 	2Dist
+11 June 1557 	4 August 1578 	Sebastião 	2Dist
+27 August 1578 	31 January 1580 	Henrique 	2Dist
+24 July 1580 	25 August 1580	António	2Dist
+25 March 1581 	13 September 1598 	Filipe I 	3Dist
+13 September 1598 	31 March 1621 	Filipe II 	3Dist
+31 March 1621 	15 December 1640 	Filipe III 	3Dist
+15 December 1640 	6 November 1656 	João IV 	4Dist
+6 November 1656 	12 September 1683 	Afonso VI 	4Dist
+12 September 1683 	9 December 1706 	Pedro II 	4Dist
+9 December 1706 	31 July 1750 	João V 	4Dist
+31 July 1750 	24 February 1777 	José I 	4Dist
+24 February 1777 	20 March 1816 	Maria I 	4Dist
+20 March 1816 	10 March 1826 	João VI 	4Dist
+10 March 1826 	5 May 1826 	Pedro IV 	4Dist
+5 May 1826 	30 June 1828 	Maria II 	4Dist
+30 June 1828 	26 May 1834 	Miguel 	4Dist
+26 May 1834 	15 November 1853 	Maria II 	4Dist
+16 September 1837 	15 November 1853 	Fernando II	4Dist
+15 November 1853 	11 November 1861 	Pedro V 	4Dist
+11 November 1861 	19 October 1889 	Luís I 	4Dist
+19 October 1889 	1 February 1908	Carlos I 	4Dist
+1 February 1908	5 October 1910	Manuel II 	4Dist
