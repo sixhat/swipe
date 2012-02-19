@@ -1,20 +1,33 @@
 # dr - David Rodrigues (dr) package with util functions
 # @author: David Rodrigues <david @ sixhat . net>
-# @version: 0.1
+# @version: 0.2.0
 
 ## SCALES 
+
 dr.scale.linear <- function(values, domain=c(0,1), range=c(0,1)){
   # Scales linearly the values of the variable values to the [min, max] range
-    dmin=domain[1]
-    dmax=domain[2]
-    min=range[1]
-    max=range[2]
-  
-  return ((values-dmin)*(max-min)/(dmax-dmin)+min)
+  dmin=domain[1]
+  dmax=domain[2]
+  min=range[1]
+  max=range[2]
+  (values-dmin)*(max-min)/(dmax-dmin)+min
 }
+
 dr.scale <- function(values, domain=c(0,1), range=c(0,1)){
   # Reverts back to dr.scale.linear
-  return (dr.scale.linear(values, domain, range))
+  dr.scale.linear(values, domain, range)
+}
+
+dr.scale.pow <- function(values, pow=1,domain=c(0,1), range=c(0,1)){
+  # TODO A power scale can where you can map an input value in the domain to 
+  # an output in the range defined.
+  xp <- dr.scale.linear(values, domain=domain)
+  dr.scale.linear(xp^pow, range=range)
+}
+
+dr.scale.sqrt <- function(values, domain=c(0,1), range=c(0,1)){
+  # A square root mapping between domain and range.
+  return (dr.scale.pow(values, pow=0.5, domain, range))
 }
 
 
@@ -129,12 +142,12 @@ dr.timeline <- function(df, format = "%Y-%m-%d", ordered = "Start",
     }
   }
 }
-# Example Usage of dr.timeline
-# First read the kings of portugal timeline 
-reis <- read.table("reis-portugal.txt", header = T, sep = "\t", 
-                   na.strings = "NA", stringsAsFactors = F)
-
-# plot the timeline of the 4 distanies.
-dr.timeline(reis, format = "%d %b %Y", ordered = "Start", vlines = F, 
-            xlab = "Ano", main = "Reinados dos Reis de Portugal", spacing = 100, 
-            scale = 1)
+# # Example Usage of dr.timeline
+# # First read the kings of portugal timeline 
+# reis <- read.table("reis-portugal.txt", header = T, sep = "\t", 
+#                    na.strings = "NA", stringsAsFactors = F)
+# 
+# # plot the timeline of the 4 distanies.
+# dr.timeline(reis, format = "%d %b %Y", ordered = "Start", vlines = F, 
+#             xlab = "Ano", main = "Reinados dos Reis de Portugal", spacing = 100, 
+#             scale = 1)
