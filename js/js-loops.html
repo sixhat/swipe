@@ -1,0 +1,56 @@
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Testing Javascript Loops</title>
+	<script type="text/javascript" charset="utf-8">	
+	function go(){
+		var o = document.getElementById('out');	
+		
+		o.innerHTML+="Loop 1 (for ;;) ";
+		var start =  (new Date()).getTime();
+		for (var i=0; i < 1000000; i++) {
+			var a = Math.random()*i;
+			var b= Math.random()*i;
+			var c= Math.round(a-b);
+			var d= Math.round(a)-Math.round(b);
+		}
+		var end = (new Date()).getTime();
+		o.innerHTML+="-- "+(end-start);
+
+
+		o.innerHTML+="<br/>Loop 2 (do - while) ";
+		var start =  (new Date()).getTime();
+		var x = 999999;
+		do {
+			var a = Math.random()*x;
+			var b= Math.random()*x;
+			var c= Math.round(a-b);
+			var d= Math.round(a)-Math.round(b);			
+		} while (x--);
+		var end = (new Date()).getTime();
+		o.innerHTML+="-- "+(end-start);		
+
+		
+		o.innerHTML+="<br/>Loop 3 (for in) ";
+		// First we need to build an array.
+		var ar = new Array();
+		for (var i=0; i < 1000000; i++) {
+			ar[i]=i;
+		};
+		var start =  (new Date()).getTime();
+		for (var i in ar) {
+			var a = Math.random()*i;
+			var b= Math.random()*i;
+			var c= Math.round(a-b);
+			var d= Math.round(a)-Math.round(b);
+		}
+		var end = (new Date()).getTime();
+		o.innerHTML+="-- "+(end-start);		
+	}	
+	</script>
+</head>
+<body id="random" onload="go();">
+	<div id='out'></div>
+
+</body>
+</html>
