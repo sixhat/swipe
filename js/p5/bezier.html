@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.min.js"></script>
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/addons/p5.dom.min.js"></script>-->
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/addons/p5.sound.js"></script>-->
+<!--    <script src="sketch.js"></script>-->
+    <link rel="stylesheet" src="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+      <style> * {margin: 0;}</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+    <script>
+        class Spiral {
+constructor(_r, _a, _x, _y, _myPercent, _myAngle) {
+  this.r =_r;
+  this.a =_a;
+  this.x = _x;
+  this.y = _y;
+  this.myPercent = _myPercent/100;
+  this.myAngle = _myAngle;
+}
+static x(r,a){
+  return r* cos(radians(a))
+}
+static y(r,a){
+  return r* sin(radians(a))
+}
+
+nextV(v){
+  // let r2 = random(this.r1, 1.01 * this.r1);
+  v=log(v+1);
+  let f = log(frameCount+1);
+  let u = 0;
+  let r2 = this.r1+1.01*noise(f,v,u++);
+
+  // let a2 = random(this.a1, this.a1 + this.myAngle);
+  let ainc = this.myAngle*noise(f,v,u++)
+
+
+  let a2 = this.a1 + ainc;
+
+  // let rc1 = random(
+  //   this.r1 * (1 - this.myPercent),
+  //   this.r1 * (1 + this.myPercent)
+  // );
+  let rc1 = this.r1 * (1-this.myPercent + 2*this.myPercent*noise(f,v,u++));
+
+  // let ac1 = random(this.a1, (this.a1 + a2) / 2);
+  let ac1 = this.a1 + ainc/2 * noise(f,v,u++);
+
+  // let rc2 = random(
+  //   r2 * (1 - this.myPercent),
+  //   r2 * (1 + this.myPercent)
+  // );
+  let rc2= this.r1 * (1-this.myPercent + 2*this.myPercent*noise(f,v,u++));
+
+  // let ac2 = random((this.a1 + a2) / 2, a2);
+  let ac2 = a2 - ainc/2*noise(f, v,u++);
+
+  bezierVertex(
+    Spiral.x(rc1,ac1),
+    Spiral.y(rc1,ac1),
+    Spiral.x(rc2,ac2),
+    Spiral.y(rc2,ac2),
+    Spiral.x(r2,a2),
+    Spiral.y(r2,a2)
+  );
+  this.r1 = r2;
+  this.a1 = a2;
+}
+
+init(){
+  push();
+  noFill();
+  translate(this.x, this.y);
+  this.r1=this.r;
+  this.a1=this.a;
+  this.numVertices = 1;
+  beginShape();
+  vertex(Spiral.x(this.r1,this.a1), Spiral.y(this.r1,this.a1));
+}
+close(){
+  endShape();
+  pop();
+}
+
+build() {
+  this.init();
+  while (this.numVertices < 1200) {
+    this.nextV(this.numVertices++);
+  }
+  this.close();
+}
+}
+let myPercent = 30;
+let myAngle = 15;
+let spiral;
+let spiral2;
+
+function setup() {
+createCanvas(innerWidth, innerHeight);
+frameRate(15);
+
+spiral = new Spiral(0,0,width/2, height/2, 50, 40);
+}
+
+function draw() {
+background("#FFFBC9");
+spiral.build();
+}
+
+function windowResized() {
+resizeCanvas(windowWidth, windowHeight);
+}
+    </script>
+  <body>
+  </body>
+</html>

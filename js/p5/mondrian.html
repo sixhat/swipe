@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.min.js"></script>
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/addons/p5.dom.min.js"></script>-->
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/addons/p5.sound.js"></script>-->
+<!--    <script src="sketch.js"></script>-->
+    <link rel="stylesheet" src="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+      <style> * {margin: 0;}</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+    <script>
+    var depth = 10;
+
+function setup() {
+  createCanvas(innerWidth, innerHeight);
+  background(255);
+
+  noFill(255);
+  stroke(0);
+  strokeWeight(20 / depth);
+  rectMode(CORNERS);
+  drawRect(20, 20, width - 20, height - 20, 0);
+}
+
+function mousePressed(){
+  saveCanvas();
+}
+
+
+function drawRect(x, y, o, p, d) {
+  if (d > depth) {
+    return;
+  }
+  if (depth == d) {
+    let col = random(0, 10) | 0;
+
+    switch (col) {
+      case 0:
+        fill("red");
+        break;
+      case 1:
+        fill("blue");
+        break;
+      case 2:
+        fill("yellow");
+        break;
+      default:
+        noFill();
+    }
+    rect(x, y, o, p);
+  }
+
+  if (random() < 0.5) {
+    // Split vertical
+    let dd = 0.2 * (p - y);
+    let yy = random(y + dd, p - dd);
+    drawRect(x, y, o, yy, d + 1);
+    drawRect(x, yy, o, p, d + 1);
+  } else {
+    let dd = 0.1 * (o - x);
+    let xx = random(x + dd, o - dd);
+    drawRect(x, y, xx, p, d + 1);
+    drawRect(xx, y, o, p, d + 1);
+  }
+}
+
+    </script>
+  <body>
+  </body>
+</html>
