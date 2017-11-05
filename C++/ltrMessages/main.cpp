@@ -11,6 +11,7 @@ int main(){
 		std::this_thread::sleep_for(std::chrono::milliseconds(50));
 	}
 	cout << "\n";
+	cout << "\a";
 	return 0;
 }
 
