@@ -2,13 +2,7 @@
 <html>
 
 <head>
-  <!--      <script src="https://cdn.rawgit.com/bit101/quicksettings/master/quicksettings.js"></script>-->
-  <!--      <script src="https://cdn.rawgit.com/bitcraftlab/p5.gui/master/libraries/p5.gui.js"></script>-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/addons/p5.dom.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/addons/p5.sound.js"></script>
-  <!--    <script src="sketch.js"></script>-->
-  <link rel="stylesheet" src="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
   <style>
     * {
       margin: 0;
@@ -22,10 +16,7 @@
     function setup() {
       createCanvas(innerWidth, innerHeight);
       myAngle = radians(15);
-      // frameRate(0.5);
-      //  sliderRange(1, 90, 1);
-      //  gui = createGui("Bezier Curves", width - 220, height - 150);
-      //  gui.addGlobals("myPercent", "myAngle");
+      frameRate(0.5);
     }
 
     function draw() {
@@ -42,8 +33,8 @@
         let a2 = random(a1, a1 + myAngle);
 
         let rc1 = random(
-          r1 * (1 - myPercent) ,
-          r1 * (1 + myPercent) 
+          r1 * (1 - myPercent),
+          r1 * (1 + myPercent)
         );
         let ac1 = random(a1, (a1 + a2) / 2);
 
