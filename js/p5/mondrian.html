@@ -39,11 +39,11 @@
 
   function drawRect(x, y, o, p, d) {
     if (!d) {
-      fill(cls[random(0, cls.length) | 0]);
+      fill(cls[Math.random()*cls.length | 0]);
       rect(x, y, o, p);
       return;
     } 
-    if (random() < 0.5) {
+    if (Math.random() < 0.5) {
       // Split vertical
       const dd = 0.2 * (p - y);
       const yy = random(y + dd, p - dd);
