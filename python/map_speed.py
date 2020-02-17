@@ -3,8 +3,7 @@ from typing import List, Iterable
 from multiprocessing import Pool
 import time
 
-
-def compute(a):
+def compute(a: float)->float:
     """
     Here will just compute the result and return it
     """
