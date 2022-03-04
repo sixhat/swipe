@@ -3,7 +3,7 @@
 import socket
 import sys
 
-TCP_IP = '192.168.1.64'  # Mude o IP para o da sua BOX
+TCP_IP = "192.168.1.64"  # Mude o IP para o da sua BOX
 TCP_PORT = 8082
 BUFFER_SIZE = 1024
 cmds = {
@@ -37,7 +37,7 @@ cmds = {
     "yellow": "142",
     "blue": "143",
     "mute": "173",
-    "stripes": "111"
+    "stripes": "111",
 }
 
 
@@ -61,7 +61,7 @@ if cmd.isdigit():
     s.connect((TCP_IP, TCP_PORT))
     data = s.recv(BUFFER_SIZE).decode()
     for l in cmd:
-        msg = "key="+str(ord(l))+"\n"
+        msg = "key=" + str(ord(l)) + "\n"
         s.sendall(msg.encode())
         data = s.recv(BUFFER_SIZE).decode()
     s.close()
@@ -69,7 +69,7 @@ elif cmd in cmds.keys():
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect((TCP_IP, TCP_PORT))
     data = s.recv(BUFFER_SIZE).decode()
-    s.sendall(str("key="+cmds[cmd]+"\n").encode())
+    s.sendall(str("key=" + cmds[cmd] + "\n").encode())
     data = s.recv(BUFFER_SIZE).decode()
     s.close()
     s = 0

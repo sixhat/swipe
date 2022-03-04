@@ -1,15 +1,16 @@
-__author__ = 'david'
+__author__ = "david"
 from typing import List, Iterable
 from multiprocessing import Pool
 import time
 
-def compute(a: float)->float:
+
+def compute(a: float) -> float:
     """
     Here will just compute the result and return it
     """
-    a = a*2+1
-    a = 0.0+a-1
-    a = a/2
+    a = a * 2 + 1
+    a = 0.0 + a - 1
+    a = a / 2
     return a ** 2 + 1 + 0.6 ** a
 
 
