@@ -1,74 +1,73 @@
 <!DOCTYPE html>
 <html>
-  <head>
-<!--      <script src="https://cdn.rawgit.com/bit101/quicksettings/master/quicksettings.js"></script>-->
-<!--      <script src="https://cdn.rawgit.com/bitcraftlab/p5.gui/master/libraries/p5.gui.js"></script>-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/addons/p5.dom.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/addons/p5.sound.js"></script>
-<!--    <script src="sketch.js"></script>-->
-    <link rel="stylesheet" src="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
-      <style> * {margin: 0;}</style>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <script>
-      var myPercent = 30;
-var myAngle = 15;
 
-function setup() {
-  createCanvas(innerWidth, innerHeight);
-  frameRate(0.5);
-//  sliderRange(1, 90, 1);
-//  gui = createGui("Bezier Curves", width - 220, height - 150);
-//  gui.addGlobals("myPercent", "myAngle");
-}
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+    }
+  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script>
+    var myPercent = 0.30;
+    var myAngle;
 
-function draw() {
-  background("#FFFBC9");
-  translate(width / 2, height / 2);
-  var r1 = 1;
-  var a1 = 0;
+    function setup() {
+      createCanvas(innerWidth, innerHeight);
+      myAngle = radians(15);
+      frameRate(0.5);
+    }
 
-  noFill();
-  beginShape();
-  vertex(r1 * cos(radians(a1)), r1 * sin(radians(a1)));
-  while (r1 < width / 2) {
-    let r2 = random(r1, 1.01 * r1);
-    let a2 = random(a1, a1 + myAngle);
+    function draw() {
+      background("#FFFBC9");
+      translate(width / 2, height / 2);
+      var r1 = 1;
+      var a1 = 0;
 
-    let rc1 = random(
-      r1 * (100 - myPercent) / 100,
-      r1 * (100 + myPercent) / 100
-    );
-    let ac1 = random(a1, (a1 + a2) / 2);
+      noFill();
+      beginShape();
+      vertex(r1 * cos(a1), r1 * sin(a1));
+      while (r1 < width / 2) {
+        let r2 = random(r1, 1.01 * r1);
+        let a2 = random(a1, a1 + myAngle);
 
-    let rc2 = random(
-      r2 * (100 - myPercent) / 100,
-      r2 * (100 + myPercent) / 100
-    );
-    let ac2 = random((a1 + a2) / 2, a2);
+        let rc1 = random(
+          r1 * (1 - myPercent),
+          r1 * (1 + myPercent)
+        );
+        let ac1 = random(a1, (a1 + a2) / 2);
 
-    bezierVertex(
-      rc1 * cos(radians(ac1)),
-      rc1 * sin(radians(ac1)),
-      rc2 * cos(radians(ac2)),
-      rc2 * sin(radians(ac2)),
-      r2 * cos(radians(a2)),
-      r2 * sin(radians(a2))
-    );
+        let rc2 = random(
+          r2 * (1 - myPercent),
+          r2 * (1 + myPercent)
+        );
+        let ac2 = random((a1 + a2) / 2, a2);
 
-    r1 = r2;
-    a1 = a2;
-  }
+        bezierVertex(
+          rc1 * cos(ac1),
+          rc1 * sin(ac1),
+          rc2 * cos(ac2),
+          rc2 * sin(ac2),
+          r2 * cos(a2),
+          r2 * sin(a2)
+        );
 
-  endShape();
-}
+        r1 = r2;
+        a1 = a2;
+      }
 
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-}
+      endShape();
+    }
 
-      </script>
-  </head>
-  <body>
-  </body>
+    function windowResized() {
+      resizeCanvas(windowWidth, windowHeight);
+    }
+
+  </script>
+</head>
+
+<body>
+</body>
+
 </html>

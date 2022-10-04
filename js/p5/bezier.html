@@ -89,31 +89,33 @@ build() {
   this.init();
   while (this.numVertices < 1200) {
     this.nextV(this.numVertices++);
+      }
+      this.close();
+    }
   }
-  this.close();
-}
-}
-let myPercent = 30;
-let myAngle = 15;
-let spiral;
-let spiral2;
+  let myPercent = 30;
+  let myAngle = 15;
+  let spiral;
+  let spiral2;
 
-function setup() {
-createCanvas(innerWidth, innerHeight);
-frameRate(15);
+  function setup() {
+    createCanvas(innerWidth, innerHeight);
+    frameRate(15);
 
-spiral = new Spiral(0,0,width/2, height/2, 50, 40);
-}
+    spiral = new Spiral(0, 0, width / 2, height / 2, 50, 40);
+  }
 
-function draw() {
-background("#FFFBC9");
-spiral.build();
-}
+  function draw() {
+    background("#FFFBC9");
+    spiral.build();
+  }
 
-function windowResized() {
-resizeCanvas(windowWidth, windowHeight);
-}
-    </script>
-  <body>
-  </body>
+  function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+  }
+</script>
+
+<body>
+</body>
+
 </html>

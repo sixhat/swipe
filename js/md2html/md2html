@@ -1,0 +1,40 @@
+#!/usr/bin/env node
+const log = console.log
+const DEBUG = false
+const { exec } = require("child_process")
+function _b(txt){
+	if (DEBUG){
+		log(txt)
+	}
+}
+function _help(){
+	log(`Converte ficheiro(s) .MD para  HTML utilizando o pandoc
+	Necessita uma instalação do pandoc https://pandoc.org/
+	
+Utilização:
+	md2html fich1.md ... fichN.md
+	
+	pode utilizar wildcards para converter todos os ficheiros .md
+	
+	md2html *
+	`)
+	_b(process.argv)
+}
+function _converte(fn){
+	if (fn.slice(-3)===".md"){
+		const df = fn.slice(0, -3) + ".html"
+		log("Convertendo "+fn+"\t --> "+df)
+		
+		const cmd = `pandoc ${fn} -s -o ${df}`
+		_b(cmd)
+		exec(cmd)
+		
+	} else {
+		log("Ignorando "+fn)
+	}
+}
+
+_help()
+for(let f of process.argv.slice(2)){
+	_converte(f)
+}
