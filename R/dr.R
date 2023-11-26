@@ -147,7 +147,7 @@ dr.timeline <- function(df, format = "%Y-%m-%d", ordered = "Start",
 # reis <- read.table("reis-portugal.txt", header = T, sep = "\t", 
 #                    na.strings = "NA", stringsAsFactors = F)
 # 
-# # plot the timeline of the 4 distanies.
+# # plot the timeline of the 4 dynasties.
 # dr.timeline(reis, format = "%d %b %Y", ordered = "Start", vlines = F, 
 #             xlab = "Ano", main = "Reinados dos Reis de Portugal", spacing = 100, 
 #             scale = 1)
