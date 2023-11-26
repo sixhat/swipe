@@ -4,9 +4,9 @@
 # License GPL v2 http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 I=$1
 F=$2
-while [ $I -lt $2 ]; do
-  wget https://www.theweekinchess.com/zips/twic${I}g.zip && unzip twic${I}g.zip && cat twic${I}.pgn >> big.pgn
-  I=`expr $I + 1`
+while [ "$I" -lt "$F" ]; do
+  wget https://www.theweekinchess.com/zips/twic"${I}"g.zip && unzip twic"${I}"g.zip && cat twic"${I}".pgn >> big.pgn
+  I=$(($I + 1))
 done
 
 rm -rf twic*
