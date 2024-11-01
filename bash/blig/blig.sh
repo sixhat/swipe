@@ -2,7 +2,7 @@
 set -e
 
 # BLiG
-# Version 0.0.2
+# Version 0.0.3
 # Right now this is probably not ready for production. 
 # It is just a first writing done in less than 30min.
 # I'll try to keep developing it further but now it is highly
@@ -15,7 +15,7 @@ mes=$(date +%m)
 
 
 function new_post {
-    read -p "   --- Enter post title: " post_title
+    read -pr "   --- Enter post title: " post_title
     file_name=$(echo "$post_title" | tr '[:upper:]' '[:lower:]')
     file_name=${file_name// /-}
     full_name="$ano/$mes-$file_name.md"
@@ -29,8 +29,8 @@ function edit {
     PS3=" ^-- BLiG file to edit: "
     select opt in src/$ano/*.md
     do
-        echo $opt
-        $editor $opt
+        echo "$opt"
+        $editor "$opt"
         PS3=" ^-- BLiG choose option: "
         break
     done
