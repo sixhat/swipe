@@ -15,7 +15,7 @@ mes=$(date +%m)
 
 
 function new_post {
-    read -pr "   --- Enter post title: " post_title
+    read -r -p "   --- Enter post title: " post_title
     file_name=$(echo "$post_title" | tr '[:upper:]' '[:lower:]')
     file_name=${file_name// /-}
     full_name="$ano/$mes-$file_name.md"
