@@ -5,6 +5,7 @@
 # The script takes two arguments: the path to the directory containing the Markdown files and the path to the output directory.
 # The script checks if the output directory is empty and asks for confirmation before recreating it.
 # The script uses the Umami analytics script to track page views.
+# Pages in the root of the source will be linked as pages in the index page.
 require 'fileutils'
 require 'kramdown'
 require 'time'
@@ -31,20 +32,28 @@ def generate_blog(posts, output_path, posts_directory)
 end
 
 def generate_index(posts, output_path)
-    index_content = "<!DOCTYPE html><html><head><title>sixhat's bookmarks index</title><link rel='stylesheet' type='text/css' href='/style.css'>#{$umami}</head>\n<body><header><h1>#{$titulo}</h1></header><hr>"
-    sorted_posts = posts.sort_by { |post| post[:modified_time] }.reverse
-    recent_posts = sorted_posts.first(10)
-    recent_posts.each do |post|
-        html_content = convert_markdown_to_html(post[:content])
-        index_content += "<article><div>#{html_content}</div></article>"
-    end
-    index_content += "<h2>Index</h2><ul>"
-    sorted_posts.each do |post|
-        post_filename = File.join(post[:relative_path], "#{File.basename(post[:filename], '.md')}.html")
-        index_content += "<li><a href='#{post_filename}'>#{post[:title]}</a> - <small>#{post[:modified_time].strftime('%Y-%m-%d %H:%M:%S')}</small></li>"
-    end
-    index_content += "</ul><footer><a href='/index.html'>Home</a></footer></body></html>"
-    File.write(File.join(output_path, 'index.html'), index_content)
+  index_content = "<!DOCTYPE html><html><head><title>sixhat's bookmarks index</title><link rel='stylesheet' type='text/css' href='/style.css'>#{$umami}</head>\n<body><header><h1>#{$titulo}</h1><nav><ul>"
+  root_posts = posts.select { |post| post[:relative_path] == '' }
+  root_posts.each do |post|
+    post_filename = "#{File.basename(post[:filename], '.md')}.html"
+    index_content += "<li><a href='#{post_filename}'>#{post[:title]}</a></li>"
+  end
+  index_content += "</ul></nav></header><hr>"
+  
+  sorted_posts = posts.reject { |post| post[:relative_path] == '' }.sort_by { |post| post[:modified_time] }.reverse
+  recent_posts = sorted_posts.first(10)
+  recent_posts.each do |post|
+    html_content = convert_markdown_to_html(post[:content])
+    index_content += "<article><div>#{html_content}</div></article>"
+  end
+  
+  index_content += "<h2>Index</h2><ul>"
+  sorted_posts.each do |post|
+    post_filename = File.join(post[:relative_path], "#{File.basename(post[:filename], '.md')}.html")
+    index_content += "<li><a href='#{post_filename}'>#{post[:title]}</a> - <small>#{post[:modified_time].strftime('%Y-%m-%d %H:%M:%S')}</small></li>"
+  end
+  index_content += "</ul><footer><a href='/index.html'>Home</a></footer></body></html>"
+  File.write(File.join(output_path, 'index.html'), index_content)
 end
 
 def generate_rss_feed(posts, output_path)
