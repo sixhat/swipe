@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -xe
+
 function runExtract(){
   fileout=$(basename "$3")
   fileout="${fileout%.*}"
